@@ -5,7 +5,7 @@ And users logged in can access to their own database and features of the app.
 
 ## Final Product
 
-!["Main page"](#)
+!["Main page"](https://github.com/kcchaha/TinyApp/blob/master/docs/Main%20page.png)
 !["Login page"](https://github.com/kcchaha/TinyApp/blob/master/docs/Login%20page.png)
 !["Register page"](#)
 !["User page"](#)
