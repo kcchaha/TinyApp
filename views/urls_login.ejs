@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title>TinyApp</title>
+</head>
+
+<body style="font-size:20px; padding:50px;">
+    <!-- Add EJS code here -->
+
+    <form action="/login" method="POST" style="display: inline">
+      <h4><strong>Welcome back to TinyApp!</strong></h4>
+      <br>
+      <p>Haven't got an Account yet? It's time to <a href="/register" class="badge badge-primary">REGISTER</a></p>
+      <p>Or Go back to our <a href="/urls" class="badge badge-primary">MAINPAGE</a></p>
+      <br>
+      <div class="form-group">
+        <label for="email"><strong>Email address</strong></label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">Please input valid email address.</small>
+      </div>
+      <div class="form-group">
+        <label for="password"><strong>Password</strong></label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <button class="btn btn-warning">Let's Log in!</button>
+    </form>
+</body>
+</html>

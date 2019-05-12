@@ -1,0 +1,17 @@
+<h1><span class="badge badge-secondary">TinyApp</span></h1>
+
+
+<% if(user){ %>
+    <a href="/urls" class="badge badge-light">URLs</a> | <a href="/urls/new" class="badge badge-light">Create New Tiny URLs</a>
+    <br>
+    <br>
+    <p>Logged in as : <%= user.email %></p>
+    <form method="POST" action="/logout">
+        <button class="btn btn-danger">Logout</button>
+        <br>
+    </form>
+  <% } else { %>  
+    <a href="/login" class="badge badge-warning">Login</a> | <a href="/register" class="badge badge-info">Register</a>
+ <% } %>
+
+

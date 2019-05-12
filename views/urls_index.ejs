@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title>TinyApp</title>
+</head>
+
+<body style="font-size:20px; padding:50px;">
+    <!-- Add EJS code here -->
+
+    <% include partials/_header %>
+    <br>
+    <br>
+    <br>
+    <h2><span class="badge badge-secondary">My URLs</span></h2>
+    <br>
+    <p><a href="/urls/new" class="badge badge-light">Create New TinyURLs</a></p>
+
+    <% if(user) { %>
+
+    <ul class="list-group">
+        <% for (url in urls) { %>
+            <% if (urls[url].userID === user.id) { %>
+                <li class="list-group-item">
+                    <%= url %> &rarr; <%= urls[url].longURL %>
+                    <p><a href="urls/<%= url %>" class="badge badge-light">Edit</a></p>
+                    <form method="POST" action="/urls/<%= url %>/delete"><button class="btn btn-dark">DELETE</button></form>
+                </li>
+            <% } %> 
+        <% }; %> 
+    </ul> 
+    <% } %>
+</body>
+</html>
