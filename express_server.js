@@ -28,25 +28,21 @@ function generateRandomString() {
 
 // Main URL database for all URLs created by users
 
-var urlDatabase = {
-  // "b2xVn2": { longURL: "http://www.lighthouselabs.ca", userID: 'test123'},
-  // "tvxq": { longURL: "http://www.lighthouselabs.com", userID: '444'},
-};
+var urlDatabase = {};
 
 
 // Main user database
 
-var users = {
-  };
+var users = {};
 
 
 // Helper Functions
 
-function checkUsername(req) { // Check whether input username or password is empty
-  if (req.body.email === '' || req.body.password === '') {
-    return false;
-  } else {
+function checkCredentials(req) { // Check whether input username or password is empty
+  if (!req.body.email || !req.body.password) {
     return true;
+  } else {
+    return false;
   }
 };
 
@@ -70,18 +66,18 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   let user = getUserByEmail(req.body.email);
-  if (!checkUsername(req)) {
+  if (checkCredentials(req)) {
     res.status(400).send('Email address and password field cannot be empty!');
   }
-    if (!user) {
-      res.status(403).send("You are not resgister yet! Please register your account and log in again!");
-    } 
+  if (!user) {
+    res.status(403).send("You are not resgister yet! Please register your account and log in again!");
+  } 
 
   if (user) {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       req.session.user_id = user.id;
       res.redirect("/urls");
-    } else if (!bcrypt.compareSync(req.body.password, user.password)) {
+    } else {
       res.status(403).send('Invalid password!');
     }
   } 
@@ -95,7 +91,7 @@ app.get("/register", (req, res) =>{
 });
 
 app.post("/register", (req, res) => {
-  if (!checkUsername(req)) {
+  if (checkCredentials(req)) {
     res.status(400).send('Email address and password field cannot be empty!');
   };
 
@@ -123,7 +119,7 @@ app.post("/register", (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session = null;
-  res.redirect("/urls");
+  res.redirect("/login");
 });
 
 
@@ -224,7 +220,13 @@ app.get("/urls.json", (req, res) => {
   });
 
 app.get("/", (req, res) => {
-  res.send("Hello!");
+  const userId = req.session.user_id;
+
+  if (userId) {
+    res.redirect("/urls");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.listen(PORT, () => {
