@@ -21,5 +21,10 @@ And users logged in can access to their own database and features of the app.
 
 ## Getting Started
 
+- Clone this repo to your local file (git clone [repo http url]).
+- Open `express_server.js`.
+- Turn on your vagrant machine (varant up -> vagrant ssh).
 - Install all dependencies (using the `npm install` command).
 - Run the development web server using the `node express_server.js` command.
+- Alternate command for running the server: `npm start`.
+- If the port has already been used, quit all your browsers and restart, do `npm start` again before you reopen your browser.
